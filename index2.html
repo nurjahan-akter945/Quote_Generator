@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Quote Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Guides:wght@400..700&family=Great+Vibes&family=Playwrite+AT:ital,wght@0,100..400;1,100..400&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <style>
+        body{
+           
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url("/Image/QuoteGeneratorBackground.jpg");
+            background-size: cover;
+            color: white;
+            z-index: -2;
+           
+        }
+        .white-mode{
+            /* background-color: beige; */
+            background-image: url("Image/olga-thelavart-vS3idIiYxX0-unsplash.jpg");
+        }
+            
+        #toggleBtn{
+            position: absolute;
+            cursor: pointer;
+            border-radius: 50%;
+            background-color: white;
+            padding: 10px;
+            border: none;
+            font-family: "Great Quote", cursive;
+            top: 0;
+            left: 0;
+            color: black;
+        }
+         #toggleBtn:hover{
+            background-color: rgb(86, 87, 87);
+            border: none;
+            color: white;
+            transition: all 0.5s linear;
+        } 
+        .container{
+            border-radius: 5px;
+            background: linear-gradient(to left, rgba(119, 63, 251, 0.263) 0%, rgba(36, 3, 63, 0.64) 41%);
+            padding: 20px 20px 30px 20px;
+            font-family: "shadow into light", cursive;
+            box-shadow: 0 0 15px rgba(240, 233, 233, 0.719);
+            z-index: 10;
+        }
+        #new-quote{
+            border-radius: 5px;
+            border: none;
+            padding: 10px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        
+        #new-quote:hover{
+            background-color: #020839;
+            transition: 0.5s ease-in-out;
+            color: white;
+            box-shadow: rgba(99, 99, 99, 0.868) 0px 2px 8px 0px;      
+        }
+        @media(max-width: 412px){
+            body{
+                padding: 50px 20px 50px 20px;
+            }
+        }
+        @media(max-width: 720px){
+            body{
+                padding: 50px 20px 50px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    
+
+    <div class="container">
+        <h1>Random Quote Generator</h1>
+        <p id="quote">Click the button to see a quote</p>
+        <p id="author">- Author</p>
+
+        <button id="new-quote">
+            New Quote
+        </button>
+    </div>
+
+<!-- Toggle Button -->
+    <button id="toggleBtn">White Mode</button>
+
+
+
+    <script>
+
+        const quotes = [
+            {
+                text: "Allah Won't Leave You Alone, Until You're Ready to Fight Alone!",
+                author: "Şefkat"
+            },
+            {
+                text: "A friend is someone who knows all about you and still loves you.",
+                author: "Elbert Hubbard"
+            },
+            {
+                text: "It is better to be hated for what you are than to be loved for what you are not.",
+                author: " Andre Gide, Autumn Leave"
+            },
+            {
+                text: "Where the northwind meets the Sea, There's a RIver Full of Memory",
+                author: "Elsa"
+            },
+            {
+                text: "In three words I can sum up everything I've learned about life: it goes on.",
+                author: "Robert Frost"
+            },
+            {
+                text: "Be yourself; everyone else is already taken.",
+                author: "Oscar Wilde"
+            },
+           
+        ]
+        const newQuote =document.getElementById("new-quote")
+        const quoteText = document.getElementById("quote")
+        const authorText = document.getElementById("author")
+        function generateQuote(){
+        const randomIndex = Math.floor(Math.random() * quotes.length)
+        const randomQuote = quotes[randomIndex]
+
+        quoteText.textContent = randomQuote.text
+        authorText.textContent = randomQuote.author
+
+}
+newQuote.addEventListener("click", generateQuote)
+
+// Mode Change
+const btn = document.getElementById("toggleBtn")
+const container = document.querySelector(".container")
+
+btn.addEventListener("click", () =>{
+    document.body.classList.toggle("white-mode")
+    if(document.body.classList.contains("white-mode")){
+        btn.textContent = "Dark Mode"
+        container.style.background = "linear-gradient(to right, #FAF7F2, #F5EFE6)"
+        container.style.color = "black"
+        container.style.boxShadow = "0px 10px 15px -3px rgba(0,0,0,0.1)"
+        container.style.fontWeight = "bold"
+    } else{
+        btn.textContent = "White Mode"
+        container.style.background = "linear-gradient(to left, rgba(119, 63, 251, 0.263) 0%, rgba(36, 3, 63, 0.64) 41%)"
+        container.style.color = "white"
+        container.style.boxShadow = "0 0 15px rgba(240, 233, 233, 0.719)"
+        container.style.fontWeight = "normal"
+    }
+})
+
+       
+
+    </script>
+</body>
+</html>
